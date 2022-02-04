@@ -3,6 +3,8 @@
 import { useState } from "react";
 import { AiOutlineClose } from "react-icons/ai";
 import { CiShoppingCart } from "react-icons/ci";
+import CartDetails from "./cart-details";
+import CartEmpty from "./cart-empty";
 
 export default function CartToggle() {
   const [isCartOpen, setIsCartOpen] = useState(false);
@@ -25,15 +27,8 @@ export default function CartToggle() {
             <div onClick={toggleCart} className="cursor-pointer">
               <AiOutlineClose size={24} />
             </div>
-            <div className="flex flex-col gap-10 container mx-auto px-6 ">
-              <div className="items-center justify-center text-xl text-gray-400">
-                Your cart is empty !
-              </div>
-
-              <div className="items-center justify-center text-lg text-gray-500">
-                Looks like you haven't added anything to your cart yet.
-              </div>
-            </div>
+            <CartEmpty />
+            <CartDetails />
           </div>
         </div>
       </div>

@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 import { AiOutlineClose, AiOutlineShopping } from "react-icons/ai";
 import { CiMenuBurger, CiSearch } from "react-icons/ci";
+import { useCart } from "../cart/cart-context";
 import CartToggle from "../cart/cart-toggle";
 import Collections from "./collections";
 import SearchBar from "./search-bar";
@@ -26,6 +27,7 @@ export default function Header() {
 
   // const classList = ["container", "mx-auto"];
 
+  const { count } = useCart();
   return (
     <header className="bg-white">
       <div className="container mx-auto px-6 sm:hidden flex justify-between items-center py-6">
@@ -37,8 +39,12 @@ export default function Header() {
           </Link>
           <div className="flex  gap-4 items-center">
             <CiSearch size={24} />
-
             <CartToggle />
+            {count > 0 && (
+              <span className="absolute -top-2 -right-2 bg-red-500 text-white text-xs font-bold rounded-full px-2 py-1">
+                {count}
+              </span>
+            )}
 
             <CiMenuBurger size={24} onClick={toggleDrawer} />
           </div>
@@ -56,7 +62,14 @@ export default function Header() {
         </div>
 
         <div className="flex items-center gap-4">
-          <CartToggle />
+          <div className="relative">
+            <CartToggle />
+            {count > 0 && (
+              <span className="absolute -top-2 -right-2 bg-red-500 text-white text-xs font-bold rounded-full flex justify-center items-center w-4 h-4">
+                {count}
+              </span>
+            )}
+          </div>
           <div className="h-4 w-[1px] bg-black"></div>
           <Link href="/login">
             <p>Login</p>

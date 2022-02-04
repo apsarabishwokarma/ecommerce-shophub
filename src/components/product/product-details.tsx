@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import { FaStar } from "react-icons/fa";
+import { useCart } from "../cart/cart-context";
 import Button from "../ui/button";
 import ProductGrid from "./product-grid";
 
@@ -23,6 +24,7 @@ type ProductDetailsProps = {
 };
 
 export default function ProductDetails({ product }: { product: Product }) {
+  const { totalCounter } = useCart();
   //client side data fetching
   // const [product, setProduct] = useState<Product | null>(null);
   // const [isLoading, setIsLoading] = useState(true);
@@ -83,7 +85,10 @@ export default function ProductDetails({ product }: { product: Product }) {
               <FaStar className="fill-yellow-400 inline mr-2" /> by{" "}
               {product.rating.count} users
             </div>
-            <Button variant="outlined">Add to cart</Button>
+
+            <Button variant="outlined" onClick={totalCounter}>
+              Add to cart
+            </Button>
           </div>
         </div>
       </div>

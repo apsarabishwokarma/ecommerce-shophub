@@ -1,6 +1,7 @@
 import Footer from "@/components/footer";
 import Header from "@/components/header";
 import Topbar from "@/components/topbar";
+import Providers from "@/lib/providers";
 
 export default function PagesLayout({
   children,
@@ -10,8 +11,10 @@ export default function PagesLayout({
   return (
     <>
       <Topbar />
-      <Header />
-      {children}
+      <Providers>
+        <Header />
+        {children}
+      </Providers>
       <Footer />
     </>
   );
