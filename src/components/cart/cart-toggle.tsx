@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { AiOutlineClose } from "react-icons/ai";
 import { CiShoppingCart } from "react-icons/ci";
-import CartDetails from "./cart-details";
+import { default as CartContent } from "./cart-contents";
 import CartEmpty from "./cart-empty";
 
 export default function CartToggle() {
@@ -28,7 +28,7 @@ export default function CartToggle() {
               <AiOutlineClose size={24} />
             </div>
             <CartEmpty />
-            <CartDetails />
+            <CartContent data={[]} />
           </div>
         </div>
       </div>
