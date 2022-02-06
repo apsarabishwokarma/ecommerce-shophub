@@ -24,7 +24,7 @@ type ProductDetailsProps = {
 };
 
 export default function ProductDetails({ product }: { product: Product }) {
-  const { totalCounter } = useCart();
+  const { totalQuantity, addCartItem } = useCart();
   //client side data fetching
   // const [product, setProduct] = useState<Product | null>(null);
   // const [isLoading, setIsLoading] = useState(true);
@@ -86,7 +86,20 @@ export default function ProductDetails({ product }: { product: Product }) {
               {product.rating.count} users
             </div>
 
-            <Button variant="outlined" onClick={totalCounter}>
+            <Button
+              variant="outlined"
+              onClick={() =>
+                addCartItem({
+                  id: product.id,
+                  image: product.image,
+                  title: product.title,
+                  price: product.price,
+                  description: product.description,
+                  category: product.category,
+                  quantity: 1,
+                })
+              }
+            >
               Add to cart
             </Button>
           </div>

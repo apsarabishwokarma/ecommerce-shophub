@@ -28,7 +28,7 @@ export default function CartToggle() {
               <AiOutlineClose size={24} />
             </div>
             <CartEmpty />
-            <CartContent data={[]} />
+            <CartContent />
           </div>
         </div>
       </div>

@@ -27,7 +27,8 @@ export default function Header() {
 
   // const classList = ["container", "mx-auto"];
 
-  const { count } = useCart();
+  const { totalQuantity } = useCart();
+
   return (
     <header className="bg-white">
       <div className="container mx-auto px-6 sm:hidden flex justify-between items-center py-6">
@@ -40,9 +41,9 @@ export default function Header() {
           <div className="flex  gap-4 items-center">
             <CiSearch size={24} />
             <CartToggle />
-            {count > 0 && (
+            {totalQuantity > 0 && (
               <span className="absolute -top-2 -right-2 bg-red-500 text-white text-xs font-bold rounded-full px-2 py-1">
-                {count}
+                {totalQuantity}
               </span>
             )}
 
@@ -64,9 +65,9 @@ export default function Header() {
         <div className="flex items-center gap-4">
           <div className="relative">
             <CartToggle />
-            {count > 0 && (
+            {totalQuantity > 0 && (
               <span className="absolute -top-2 -right-2 bg-red-500 text-white text-xs font-bold rounded-full flex justify-center items-center w-4 h-4">
-                {count}
+                {totalQuantity}
               </span>
             )}
           </div>

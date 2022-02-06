@@ -2,44 +2,32 @@
 
 import Image from "next/image";
 import Link from "next/link";
+import { useCart } from "./cart-context";
 
-type Product = {
-  id: number;
-  title: string;
-  price: number;
-  description: string;
-  category: string;
-  image: string;
-  rating: {
-    rate: number;
-    count: number;
-  };
-};
+function CartContent() {
+  // const { totalQuantity } = useContext(CartContext);
+  const { cartItems } = useCart();
 
-type CartContentProps = {
-  data: Product[];
-};
-
-function CartContent({ data }: CartContentProps) {
   return (
     <div className="container mx-auto ">
-      <div className="flex">
-        {data?.map(({ id, title, image, price, description }) => (
+      <div className="flex items-center justify-between border-b pb-4 mb-4">
+        <div className="text-gray-600 w-8">1</div>
+        {cartItems?.map(({ id, title, image, price, description }) => (
           <Link href={`/product/${id}`} key={id} className="">
             <figure className="">
               <Image
                 src={image}
                 alt={title}
-                height={30}
-                width={30}
-                className="rounded full"
+                height={16}
+                width={16}
+                className="w-full h-full object-cover"
                 quality={100}
               />
             </figure>
-
-            <h2 className="text-lg font-semibold">{title}</h2>
-            <p className="text-gray-500 text-sm ">{description}</p>
-            <p className="text-gray-800 font-bold">${price}</p>
+            <div className="flex-1 pl-4">
+              <div className="text-lg font-medium text-gray-700">{title}</div>
+              <div className="text-sm text-gray-500">Price: ${price}</div>
+            </div>
           </Link>
         ))}
       </div>
