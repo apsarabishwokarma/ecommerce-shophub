@@ -4,6 +4,7 @@ import { useState } from "react";
 import { AiOutlineClose } from "react-icons/ai";
 import { CiShoppingCart } from "react-icons/ci";
 import { default as CartContent } from "./cart-contents";
+import { useCart } from "./cart-context";
 import CartEmpty from "./cart-empty";
 
 export default function CartToggle() {
@@ -13,9 +14,14 @@ export default function CartToggle() {
     setIsCartOpen(!isCartOpen);
   };
 
+  const { totalQuantity } = useCart();
   return (
     <>
-      <CiShoppingCart size={24} onClick={toggleCart} />
+      <CiShoppingCart
+        size={24}
+        onClick={toggleCart}
+        className="cursor-pointer"
+      />
 
       <div
         className={`fixed bg-black w-2/4 bg-opacity-30 z-50 max-w-xs  top-0 bottom-0 transition-all duration-500 ease-in-out ${
@@ -27,8 +33,7 @@ export default function CartToggle() {
             <div onClick={toggleCart} className="cursor-pointer">
               <AiOutlineClose size={24} />
             </div>
-            <CartEmpty />
-            <CartContent />
+            {totalQuantity > 0 ? <CartContent /> : <CartEmpty />}
           </div>
         </div>
       </div>

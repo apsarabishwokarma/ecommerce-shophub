@@ -2,35 +2,49 @@
 
 import Image from "next/image";
 import Link from "next/link";
+import { AiOutlineDelete } from "react-icons/ai";
 import { useCart } from "./cart-context";
 
 function CartContent() {
-  // const { totalQuantity } = useContext(CartContext);
   const { cartItems } = useCart();
 
-  return (
-    <div className="container mx-auto ">
-      <div className="flex items-center justify-between border-b pb-4 mb-4">
-        <div className="text-gray-600 w-8">1</div>
-        {cartItems?.map(({ id, title, image, price, description }) => (
-          <Link href={`/product/${id}`} key={id} className="">
-            <figure className="">
-              <Image
-                src={image}
-                alt={title}
-                height={16}
-                width={16}
-                className="w-full h-full object-cover"
-                quality={100}
-              />
-            </figure>
-            <div className="flex-1 pl-4">
-              <div className="text-lg font-medium text-gray-700">{title}</div>
-              <div className="text-sm text-gray-500">Price: ${price}</div>
-            </div>
-          </Link>
-        ))}
+  if (!cartItems || cartItems.length === 0) {
+    return (
+      <div className="flex items-center justify-center h-full">
+        <p className="text-gray-500">Your cart is empty.</p>
       </div>
+    );
+  }
+
+  return (
+    <div className="p-4 max-h-64 bg-gray-200">
+      {cartItems.map(({ id, title, image, price, quantity }) => (
+        <div key={id} className="flex items-center gap-4 border-b pb-4">
+          <Link href={`/product/${id}`} className="w-16 h-16">
+            <Image
+              src={image}
+              alt={title}
+              width={60}
+              height={60}
+              className="rounded object-cover"
+              quality={100}
+            />
+          </Link>
+
+          <div className="flex-1">
+            <Link
+              href={`/product/${id}`}
+              className="text-sm font-semibold text-gray-800 hover:underline"
+            >
+              {title}
+            </Link>
+            <p className="text-sm text-gray-500 mt-1">Price: ${price}</p>
+          </div>
+
+          <p className="text-sm text-gray-700 font-medium">Qty:{quantity}</p>
+          <AiOutlineDelete size={20} className="text-red-600" />
+        </div>
+      ))}
     </div>
   );
 }
