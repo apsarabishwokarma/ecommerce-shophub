@@ -6,7 +6,13 @@ import { AiOutlineDelete } from "react-icons/ai";
 import { useCart } from "./cart-context";
 
 function CartContent() {
-  const { cartItems } = useCart();
+  const { cartItems, setCartItems } = useCart();
+  // Function to handle removing an item from the cart
+  const removeItem = (idToRemove: number) => {
+    setCartItems((prevItems) =>
+      prevItems.filter((item) => item.id !== idToRemove)
+    );
+  };
 
   if (!cartItems || cartItems.length === 0) {
     return (
@@ -18,7 +24,7 @@ function CartContent() {
 
   return (
     <div className="p-4 max-h-64 bg-gray-200">
-      {cartItems.map(({ id, title, image, price, quantity }) => (
+      {cartItems.map(({ id, title, image, price, itemQuantity }) => (
         <div key={id} className="flex items-center gap-4 border-b pb-4">
           <Link href={`/product/${id}`} className="w-16 h-16">
             <Image
@@ -41,8 +47,16 @@ function CartContent() {
             <p className="text-sm text-gray-500 mt-1">Price: ${price}</p>
           </div>
 
-          <p className="text-sm text-gray-700 font-medium">Qty:{quantity}</p>
-          <AiOutlineDelete size={20} className="text-red-600" />
+          <p className="text-sm text-gray-700 font-medium">
+            Qty:{itemQuantity}
+          </p>
+          <button
+            onClick={() => removeItem(id)}
+            aria-label={`Remove ${title}`}
+            className="text-red-600 hover:text-red-800"
+          >
+            <AiOutlineDelete size={20} />
+          </button>
         </div>
       ))}
     </div>

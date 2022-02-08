@@ -96,7 +96,7 @@ export default function ProductDetails({ product }: { product: Product }) {
                   price: product.price,
                   description: product.description,
                   category: product.category,
-                  quantity: 1,
+                  itemQuantity: 1,
                 })
               }
             >

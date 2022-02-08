@@ -8,7 +8,7 @@ type CartItem = {
   description: string;
   category: string;
   image: string;
-  quantity: number;
+  itemQuantity: number;
 };
 
 //const CounterContext = createContext();
@@ -17,12 +17,14 @@ type CartItem = {
 
 type CartContextType = {
   cartItems: CartItem[];
+  setCartItems: React.Dispatch<React.SetStateAction<CartItem[]>>;
   totalQuantity: number;
   addCartItem: (product: CartItem) => void;
 };
 
 const initialValue: CartContextType = {
   cartItems: [],
+  setCartItems: () => {},
   totalQuantity: 0,
   addCartItem: () => {},
 };
@@ -35,15 +37,32 @@ export default function CartProvider({ children }: { children: ReactNode }) {
   const [cartItems, setCartItems] = useState<CartItem[]>([]);
 
   function addCartItem(product: CartItem) {
-    setCartItems([product]);
+    setCartItems((prevItems) => {
+      const existingItem = prevItems.find((item) => item.id === product.id);
+      if (existingItem) {
+        // Update quantity if item already exists
+        return prevItems.map((item) =>
+          item.id === product.id
+            ? {
+                ...item,
+                itemQuantity: item.itemQuantity + product.itemQuantity,
+              }
+            : item
+        );
+      }
+      return [...prevItems, product];
+    });
   }
-
   return (
     // current value
     <CartContext.Provider
       value={{
         cartItems,
-        totalQuantity: cartItems.length,
+        setCartItems,
+        totalQuantity: cartItems.reduce(
+          (total, item) => total + item.itemQuantity,
+          0
+        ),
         addCartItem,
       }}
     >
