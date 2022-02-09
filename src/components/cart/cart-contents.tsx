@@ -6,13 +6,7 @@ import { AiOutlineDelete } from "react-icons/ai";
 import { useCart } from "./cart-context";
 
 function CartContent() {
-  const { cartItems, setCartItems } = useCart();
-  // Function to handle removing an item from the cart
-  const removeItem = (idToRemove: number) => {
-    setCartItems((prevItems) =>
-      prevItems.filter((item) => item.id !== idToRemove)
-    );
-  };
+  const { cartItems, removeItemFromCart } = useCart();
 
   if (!cartItems || cartItems.length === 0) {
     return (
@@ -23,9 +17,9 @@ function CartContent() {
   }
 
   return (
-    <div className="p-4 max-h-64 bg-gray-200">
+    <div className="p-4 divide-y">
       {cartItems.map(({ id, title, image, price, itemQuantity }) => (
-        <div key={id} className="flex items-center gap-4 border-b pb-4">
+        <div key={id} className="flex items-center gap-4 border-b py-4">
           <Link href={`/product/${id}`} className="w-16 h-16">
             <Image
               src={image}
@@ -51,7 +45,7 @@ function CartContent() {
             Qty:{itemQuantity}
           </p>
           <button
-            onClick={() => removeItem(id)}
+            onClick={() => removeItemFromCart(id)}
             aria-label={`Remove ${title}`}
             className="text-red-600 hover:text-red-800"
           >
