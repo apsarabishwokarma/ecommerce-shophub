@@ -18,6 +18,7 @@ type CartItem = {
 type CartContextType = {
   cartItems: CartItem[];
   totalQuantity: number;
+  totalPrice: number;
   addCartItem: (product: CartItem) => void;
   removeItemFromCart: (id: number) => void;
 };
@@ -25,6 +26,7 @@ type CartContextType = {
 const initialValue: CartContextType = {
   cartItems: [],
   totalQuantity: 0,
+  totalPrice: 0,
   addCartItem: () => {},
   removeItemFromCart: () => {},
 };
@@ -83,6 +85,11 @@ export default function CartProvider({ children }: { children: ReactNode }) {
     totalQuantity = totalQuantity + cartItems[i].itemQuantity;
   }
 
+  let totalPrice = 0;
+  for (let i = 0; i < cartItems.length; i++) {
+    totalPrice = totalPrice + cartItems[i].itemQuantity * cartItems[i].price;
+  }
+
   return (
     // current value
     <CartContext.Provider
@@ -91,6 +98,7 @@ export default function CartProvider({ children }: { children: ReactNode }) {
         totalQuantity: totalQuantity,
         addCartItem,
         removeItemFromCart,
+        totalPrice,
       }}
     >
       {children}

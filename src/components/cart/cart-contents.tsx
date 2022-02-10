@@ -2,11 +2,13 @@
 
 import Image from "next/image";
 import Link from "next/link";
+import { useState } from "react";
 import { AiOutlineDelete } from "react-icons/ai";
+import { TiArrowSortedDown, TiArrowSortedUp } from "react-icons/ti";
 import { useCart } from "./cart-context";
 
 function CartContent() {
-  const { cartItems, removeItemFromCart } = useCart();
+  const { cartItems, removeItemFromCart, totalPrice } = useCart();
 
   if (!cartItems || cartItems.length === 0) {
     return (
@@ -16,43 +18,68 @@ function CartContent() {
     );
   }
 
+  const [itemQuantity, setItemQuantity] = useState(1);
+
+  const incrementQty = () => {
+    setItemQuantity((itemQuantity) => itemQuantity + 1);
+  };
+
+  const decrementQty = () => {
+    setItemQuantity((itemQuantity) =>
+      itemQuantity > 1 ? itemQuantity - 1 : 1
+    );
+  };
   return (
-    <div className="p-4 divide-y">
-      {cartItems.map(({ id, title, image, price, itemQuantity }) => (
-        <div key={id} className="flex items-center gap-4 border-b py-4">
-          <Link href={`/product/${id}`} className="w-16 h-16">
-            <Image
-              src={image}
-              alt={title}
-              width={60}
-              height={60}
-              className="rounded object-cover"
-              quality={100}
-            />
-          </Link>
-
-          <div className="flex-1">
-            <Link
-              href={`/product/${id}`}
-              className="text-sm font-semibold text-gray-800 hover:underline"
-            >
-              {title}
+    <div>
+      <div className="p-4 divide-y">
+        {cartItems.map(({ id, title, image, price, itemQuantity }) => (
+          <div key={id} className="flex items-center gap-4 border-b py-4">
+            <Link href={`/product/${id}`} className="w-16 h-16">
+              <Image
+                src={image}
+                alt={title}
+                width={80}
+                height={80}
+                className="rounded object-cover"
+                quality={100}
+              />
             </Link>
-            <p className="text-sm text-gray-500 mt-1">Price: ${price}</p>
-          </div>
 
-          <p className="text-sm text-gray-700 font-medium">
-            Qty:{itemQuantity}
-          </p>
-          <button
-            onClick={() => removeItemFromCart(id)}
-            aria-label={`Remove ${title}`}
-            className="text-red-600 hover:text-red-800"
-          >
-            <AiOutlineDelete size={20} />
-          </button>
-        </div>
-      ))}
+            <div className="flex-1">
+              <Link
+                href={`/product/${id}`}
+                className="text-sm font-semibold text-gray-800 hover:underline"
+              >
+                {title}
+              </Link>
+              <p className="text-sm text-gray-500 mt-1">Price: ${price}</p>
+            </div>
+            <div className="flex gap-1">
+              <p className="text-sm text-gray-700 font-medium">
+                Qty: {itemQuantity}
+              </p>
+              <div className="flex-col gap-1">
+                <button onClick={incrementQty}>
+                  <TiArrowSortedUp />
+                </button>
+                <button onClick={decrementQty}>
+                  <TiArrowSortedDown />
+                </button>
+              </div>
+            </div>
+            <button
+              onClick={() => removeItemFromCart(id)}
+              aria-label={`Remove ${title}`}
+              className="text-red-600 hover:text-red-800"
+            >
+              <AiOutlineDelete size={20} />
+            </button>
+          </div>
+        ))}
+      </div>
+      <div>
+        <h3>Total price:{totalPrice}</h3>
+      </div>
     </div>
   );
 }
