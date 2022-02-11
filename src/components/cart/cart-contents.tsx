@@ -2,13 +2,18 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { useState } from "react";
 import { AiOutlineDelete } from "react-icons/ai";
 import { TiArrowSortedDown, TiArrowSortedUp } from "react-icons/ti";
 import { useCart } from "./cart-context";
 
 function CartContent() {
-  const { cartItems, removeItemFromCart, totalPrice } = useCart();
+  const {
+    cartItems,
+    removeItemFromCart,
+    totalPrice,
+    incrementQty,
+    decrementQty,
+  } = useCart();
 
   if (!cartItems || cartItems.length === 0) {
     return (
@@ -18,17 +23,6 @@ function CartContent() {
     );
   }
 
-  const [itemQuantity, setItemQuantity] = useState(1);
-
-  const incrementQty = () => {
-    setItemQuantity((itemQuantity) => itemQuantity + 1);
-  };
-
-  const decrementQty = () => {
-    setItemQuantity((itemQuantity) =>
-      itemQuantity > 1 ? itemQuantity - 1 : 1
-    );
-  };
   return (
     <div>
       <div className="p-4 divide-y">
@@ -59,10 +53,18 @@ function CartContent() {
                 Qty: {itemQuantity}
               </p>
               <div className="flex-col gap-1">
-                <button onClick={incrementQty}>
+                <button
+                  onClick={() => {
+                    incrementQty(id);
+                  }}
+                >
                   <TiArrowSortedUp />
                 </button>
-                <button onClick={decrementQty}>
+                <button
+                  onClick={() => {
+                    decrementQty(id);
+                  }}
+                >
                   <TiArrowSortedDown />
                 </button>
               </div>

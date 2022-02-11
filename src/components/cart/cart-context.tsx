@@ -21,6 +21,8 @@ type CartContextType = {
   totalPrice: number;
   addCartItem: (product: CartItem) => void;
   removeItemFromCart: (id: number) => void;
+  incrementQty: (id: number) => void;
+  decrementQty: (id: number) => void;
 };
 
 const initialValue: CartContextType = {
@@ -29,6 +31,8 @@ const initialValue: CartContextType = {
   totalPrice: 0,
   addCartItem: () => {},
   removeItemFromCart: () => {},
+  incrementQty: () => {},
+  decrementQty: () => {},
 };
 
 // Creating Context
@@ -80,6 +84,23 @@ export default function CartProvider({ children }: { children: ReactNode }) {
     });
   }
 
+  function incrementQty(id: number) {
+    setCartItems((prevItems) =>
+      prevItems.map((item) =>
+        item.id === id ? { ...item, itemQuantity: item.itemQuantity + 1 } : item
+      )
+    );
+  }
+  function decrementQty(id: number) {
+    setCartItems((prevItems) =>
+      prevItems.map((item) =>
+        item.id === id && item.itemQuantity > 1
+          ? { ...item, itemQuantity: item.itemQuantity - 1 }
+          : item
+      )
+    );
+  }
+
   let totalQuantity = 0;
   for (let i = 0; i < cartItems.length; i++) {
     totalQuantity = totalQuantity + cartItems[i].itemQuantity;
@@ -99,6 +120,8 @@ export default function CartProvider({ children }: { children: ReactNode }) {
         addCartItem,
         removeItemFromCart,
         totalPrice,
+        incrementQty,
+        decrementQty,
       }}
     >
       {children}
