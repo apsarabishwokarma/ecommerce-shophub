@@ -1,7 +1,14 @@
 "use client";
-import { createContext, ReactNode, useContext, useState } from "react";
+import {
+  createContext,
+  ReactNode,
+  useContext,
+  useEffect,
+  useState,
+} from "react";
+import { getCartItems, storeCartItems } from "./localstorage";
 
-type CartItem = {
+export type CartItem = {
   id: number;
   title: string;
   price: number;
@@ -15,7 +22,7 @@ type CartItem = {
 // const CounterContext = createContext<CounterContextType | undefined>(undefined);
 // const CounterContext = createContext({ count: 0, totalCounter: () => {} });
 
-type CartContextType = {
+export type CartContextType = {
   cartItems: CartItem[];
   totalQuantity: number;
   totalPrice: number;
@@ -41,6 +48,7 @@ export const CartContext = createContext<CartContextType>(initialValue);
 // Creating Provider
 export default function CartProvider({ children }: { children: ReactNode }) {
   const [cartItems, setCartItems] = useState<CartItem[]>([]);
+  // const [mounted, setMounted] = useState(false);
 
   function addCartItem(product: CartItem) {
     // const existingCartItems = [...cartItems];
@@ -91,6 +99,7 @@ export default function CartProvider({ children }: { children: ReactNode }) {
       )
     );
   }
+
   function decrementQty(id: number) {
     setCartItems((prevItems) =>
       prevItems.map((item) =>
@@ -110,6 +119,20 @@ export default function CartProvider({ children }: { children: ReactNode }) {
   for (let i = 0; i < cartItems.length; i++) {
     totalPrice = totalPrice + cartItems[i].itemQuantity * cartItems[i].price;
   }
+
+  useEffect(() => {
+    const items = getCartItems();
+
+    setCartItems(items);
+  }, []);
+
+  useEffect(() => {
+    // if (mounted) {
+    storeCartItems(cartItems);
+    // } else {
+    //   setMounted(true);
+    // }
+  }, [cartItems]);
 
   return (
     // current value
