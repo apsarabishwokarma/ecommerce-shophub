@@ -92,9 +92,10 @@ const ProductGrid = ({
           )}
         </div>
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-          {isLoading ? (
-            <div>Loading....</div>
-          ) : (
+          {
+            // isLoading ? (
+            //   <div>Loading....</div>
+            // ) : (
             data.map(({ id, title, image, price, rating }) => (
               <Link
                 href={`/product/${id}`}
@@ -121,7 +122,8 @@ const ProductGrid = ({
                 </div>
               </Link>
             ))
-          )}
+            // )
+          }
         </div>
       </div>
     </>
