@@ -34,7 +34,9 @@ export default function ProductDetailsPage({
 
     async function getProduct() {
       try {
-        const res = await fetch(`https://fakestoreapi.com/products/${params.id}`);
+        const res = await fetch(
+          `https://fakestoreapi.com/products/${params.id}`,
+        );
 
         if (!res.ok) {
           throw new Error(`Failed to fetch product: ${res.status}`);
