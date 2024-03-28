@@ -1,9 +1,21 @@
 "use client";
 
 import { useEffect, useState } from "react";
+type Product = {
+  id: number;
+  title: string;
+  price: number;
+  description: string;
+  category: string;
+  image: string;
+  rating: {
+    rate: number;
+    count: number;
+  };
+};
 
 const Home = () => {
-  const [data, setData] = useState();
+  const [data, setData] = useState<Product[]>([]);
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
@@ -44,4 +56,4 @@ const Home = () => {
   );
 };
 
-export default App;
+export default Home;
