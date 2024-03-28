@@ -22,7 +22,7 @@ export default function SearchBar() {
         </form>
       </section> */}
 
-      <div className="flex flex-1 items-center border border-gray-300 px-4 rounded-full ">
+      <div className="flex flex-1 items-center border border-gray-300 px-4 rounded-full m-4 ">
         <input
           placeholder="Search product"
           className="flex-1 border-r px-4 py-2"
