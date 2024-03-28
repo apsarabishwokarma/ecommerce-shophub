@@ -16,6 +16,7 @@ const Home = () => {
     //     }).catch((e)=>{});
     //   console.log("run");
     // }
+    // alternative code
 
     async function getData() {
       try {
