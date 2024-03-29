@@ -31,7 +31,7 @@ export default function Collections() {
   return (
     <section className="hidden lg:flex cursor-pointer items-center space-x-2 rounded-sm hover:bg-slate-100 px-2 py-3 group relative">
       <BsCollection className="text-black w-4" />
-      <div className="mr-1 text-sm font-medium text-[#202223]">Collections</div>
+      <div className="mr-1 text-sm font-medium text-[#202223]">Categories</div>
       <IoIosArrowDown className="group-hover:rotate-180 transition-transform w-4" />
       <div className="absolute top-full z-50 group-hover:block hidden w-52 rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
         <ul className="p-1">

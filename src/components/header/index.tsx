@@ -1,4 +1,4 @@
-import { AiOutlineShopping } from "react-icons/ai";
+import { MdOutlineShoppingCart } from "react-icons/md";
 
 import Collections from "./collections";
 import SearchBar from "./search-bar";
@@ -11,7 +11,7 @@ export default function Header() {
         <Collections />
         <SearchBar />
         <div className="flex items-center gap-2">
-          <AiOutlineShopping size={20} />
+          <MdOutlineShoppingCart size={20} />
           <div className="h-4 w-[1px] bg-black"></div>
           <p>Login</p>
           <p>Signup</p>
