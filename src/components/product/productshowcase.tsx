@@ -4,7 +4,7 @@ export default function ProductShowcase() {
   return (
     <>
       <div className="bg-green-200 text-black py-10 mt-20">
-        <div className="mx-auto max-w-6xl flex gap-24 ">
+        <div className="flex items-center justify-center flex-col-reverse md:flex-row gap-24 container mx-auto px-6">
           <div className="flex flex-col gap-4 justify-center items-center text-center">
             <h1 className="font-bold text-3xl ml-3">
               {" "}

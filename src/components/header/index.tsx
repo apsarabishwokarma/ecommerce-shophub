@@ -5,18 +5,20 @@ import SearchBar from "./search-bar";
 
 export default function Header() {
   return (
-    <>
-      <div className="bg-white flex text-black justify-between items-center gap-2 px-4 py-4">
-        <h2 className="font-bold">ShopHub</h2>
-        <Collections />
-        <SearchBar />
-        <div className="flex items-center gap-2">
+    <header className="bg-white">
+      <div className="container mx-auto px-6 flex text-black justify-between items-center gap-2 py-4">
+        <div className="flex items-center gap-4 w-full">
+          <h2 className="font-bold">ShopHub</h2>
+          <Collections />
+          <SearchBar />
+        </div>
+        <div className="flex items-center gap-4">
           <MdOutlineShoppingCart size={20} />
           <div className="h-4 w-[1px] bg-black"></div>
           <p>Login</p>
           <p>Signup</p>
         </div>
       </div>
-    </>
+    </header>
   );
 }
