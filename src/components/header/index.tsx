@@ -1,5 +1,3 @@
-import { MdOutlineShoppingCart } from "react-icons/md";
-
 import { CiMenuBurger, CiSearch, CiShoppingCart } from "react-icons/ci";
 import Collections from "./collections";
 import SearchBar from "./search-bar";
@@ -24,7 +22,7 @@ export default function Header() {
           <SearchBar />
         </div>
         <div className="flex items-center gap-4">
-          <MdOutlineShoppingCart size={20} />
+          <CiShoppingCart size={20} />
           <div className="h-4 w-[1px] bg-black"></div>
           <p>Login</p>
           <p>Signup</p>
