@@ -25,7 +25,7 @@ export default function SearchBar() {
       <div className="flex flex-1 items-center border border-gray-300 px-4 rounded-full m-4 ">
         <input
           placeholder="Search product"
-          className="flex-1 border-r px-4 py-2"
+          className="flex-1 border-r px-4 py-2 focus:outline-none "
         />
         <button className="flex items-center px-4 py-2 ">
           <CiSearch className="mr-2" />
