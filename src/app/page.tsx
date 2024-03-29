@@ -49,7 +49,7 @@ const Home = () => {
     <div>
       {isLoading ? "Loading...." : "Done"}
       {data?.map(({ id, title }) => (
-        <div>{title}</div>
+        <div key={id}>{title}</div>
       ))}
       <br />
     </div>
