@@ -50,7 +50,7 @@ const ProductGrid = () => {
   return (
     <>
       <div className="bg-white text-black container mx-auto px-6">
-        <div className=" flex flex-col  gap-4 py-20 justify-center items-center">
+        <div className=" flex flex-col  gap-4 py-20 justify-center items-center text-center">
           <p className="font-medium text-base">Featured Products</p>
           <h1 className="font-bold text-3xl">BEST SELLER PRODUCTS</h1>
           <p className="font-medium text-lg">
