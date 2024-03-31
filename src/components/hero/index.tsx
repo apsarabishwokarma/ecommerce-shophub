@@ -1,22 +1,51 @@
+"use client";
+
+import { heroCarouselItems } from "@/data/hero-carousel";
+import { useState } from "react";
 import Button from "../ui/button";
 
 export default function Hero() {
+  const [currentIndex, setCurrentIndex] = useState(0);
+
   return (
     <>
       <div
         style={{
-          backgroundImage: "url(/assets/herobg.jpeg)",
+          backgroundImage: `url(${heroCarouselItems[currentIndex].image})`,
         }}
         className="bg-cover bg-no-repeat h-screen max-h-[800px] bg-center"
       >
-        <div className="flex flex-col text-white container mx-auto px-8 pt-[200px] gap-8">
-          <p className="font-medium text-base">Summer 2025</p>
-          <h1 className="font-bold text-3xl md:text-5xl">NEW COLLECTION</h1>
+        <div className="flex flex-col text-white container mx-auto px-8 md:px-20 pt-[200px] gap-8">
           <p className="font-medium text-base">
-            Elevating your shopping game, one click at a time.
+            {heroCarouselItems[currentIndex].title}
+          </p>
+          <h1 className="font-bold text-3xl md:text-5xl">
+            {heroCarouselItems[currentIndex].category}
+          </h1>
+          <p className="font-medium text-base">
+            {heroCarouselItems[currentIndex].subtitle}
           </p>
           <Button />
         </div>
+
+        <button
+          onClick={() => {
+            if (currentIndex === 0) return;
+            // setCurrentIndex(currentIndex - 1);
+            setCurrentIndex((i) => i - 1);
+          }}
+        >
+          Prev
+        </button>
+        <button
+          onClick={() => {
+            if (currentIndex === 2) return;
+            // setCurrentIndex(currentIndex + 1);
+            setCurrentIndex((prev) => prev + 1);
+          }}
+        >
+          Next
+        </button>
       </div>
     </>
   );

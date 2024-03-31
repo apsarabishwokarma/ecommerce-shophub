@@ -103,6 +103,10 @@ const product1: Product = {
   ],
 };
 
+type RatingN = (typeof product1)["rating"];
+type VariantN = NonNullable<(typeof product1)["variants"]>[0];
+type ReviewN = (typeof product1)["reviews"][0];
+
 const rating1: Rating = {
   rate: 2,
   count: 5,
@@ -117,3 +121,53 @@ const variant: NonNullable<Product["variants"]>[0] = {
   color: "red",
   price: 100,
 };
+
+//1 . Function Using Product
+// function showProduct(product: Product) {
+//   console.log(product.name);
+//   console.log({ name: product.name });
+//   console.log(product);
+// }
+
+// showProduct(product1);
+
+// 1.5.
+// function showProduct(product: Product) {
+//   const name = product.name;
+//   const id = product.id;
+//   // can't do rest
+
+//   console.log(name);
+//   console.log({ name: name, id });
+// }
+
+// showProduct(product1);
+
+// 2. Extracting values in parameters
+// function showProduct({name, id, ...rest}: Product) {
+//   console.log(name);
+//   console.log({ name: name, id });
+//   console.log(rest)
+// }
+
+// showProduct(product1);
+
+// 3. Giving default value
+// function showProduct({name = "default name", id, ...rest}: Product) {
+//   console.log(name);
+//   console.log({ name: name, id });
+//   console.log(rest)
+// }
+
+// showProduct(product1);
+
+// 4. Equivalent to above
+function showProduct(product: Product) {
+  const { name = "default name", id, ...rest } = product;
+
+  console.log(name);
+  console.log({ name: name, id });
+  console.log(rest);
+}
+
+showProduct(product1);
