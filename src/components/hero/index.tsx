@@ -44,7 +44,7 @@ export default function Hero() {
         </button>
         <button
           onClick={() => {
-            if (currentIndex === 2) return;
+            if (currentIndex === 3) return;
             // setCurrentIndex(currentIndex + 1);
             setCurrentIndex((prev) => prev + 1);
           }}
