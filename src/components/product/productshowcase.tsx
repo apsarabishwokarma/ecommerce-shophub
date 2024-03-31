@@ -14,7 +14,7 @@ export default function ProductShowcase() {
               Explore our wide range of products
               <br /> Find everything you need to elevate your lifestyle
             </p>
-            <Button />
+            <Button className="mb-2" />
           </div>
           <figure>
             <img
