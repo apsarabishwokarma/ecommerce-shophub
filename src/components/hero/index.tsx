@@ -2,6 +2,7 @@
 
 import { heroCarouselItems } from "@/data/hero-carousel";
 import { useState } from "react";
+import { GrNext, GrPrevious } from "react-icons/gr";
 import Button from "../ui/button";
 
 export default function Hero() {
@@ -13,7 +14,7 @@ export default function Hero() {
         style={{
           backgroundImage: `url(${heroCarouselItems[currentIndex].image})`,
         }}
-        className="bg-cover bg-no-repeat h-screen max-h-[800px] bg-center"
+        className="bg-cover bg-no-repeat h-screen max-h-[800px] bg-center relative"
       >
         <div className="flex flex-col text-white container mx-auto px-8 md:px-20 pt-[200px] gap-8">
           <p className="font-medium text-base">
@@ -35,7 +36,11 @@ export default function Hero() {
             setCurrentIndex((i) => i - 1);
           }}
         >
-          Prev
+          <GrPrevious
+            className="absolute top-40% left-6"
+            size={40}
+            color="white"
+          />
         </button>
         <button
           onClick={() => {
@@ -44,7 +49,11 @@ export default function Hero() {
             setCurrentIndex((prev) => prev + 1);
           }}
         >
-          Next
+          <GrNext
+            className="absolute top-40% right-6"
+            size={40}
+            color="white"
+          />
         </button>
       </div>
     </>
