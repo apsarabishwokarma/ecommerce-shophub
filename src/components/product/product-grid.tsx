@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { useEffect, useState } from "react";
 import { FaStar } from "react-icons/fa6";
 
@@ -63,25 +64,28 @@ const ProductGrid = () => {
             <div>Loading....</div>
           ) : (
             data.map(({ id, title, image, price, rating }) => (
-              <div
+              <Link
+                href={`/product/${id}`}
                 key={id}
-                className="bg-white p-4 rounded-md border hover:shadow-md"
+                className="bg-white p-4 rounded-md border hover:shadow-md block"
               >
-                <figure className="aspect-square">
-                  <img
-                    src={image}
-                    alt={title}
-                    className="w-full h-full object-contain"
-                  />
-                </figure>
-                <div className="m-3 text-gray-600">{title}</div>
-                <div className="text-gray-600">${price}</div>
-                <div className="text-gray-600">
-                  {rating.rate}{" "}
-                  <FaStar className="fill-yellow-400 inline mr-2" /> by{" "}
-                  {rating.count} users
+                <div className="cursor-pointer">
+                  <figure className="aspect-square">
+                    <img
+                      src={image}
+                      alt={title}
+                      className="w-full h-full object-contain"
+                    />
+                  </figure>
+                  <div className="m-3 text-gray-600">{title}</div>
+                  <div className="text-gray-600">${price}</div>
+                  <div className="text-gray-600">
+                    {rating.rate}{" "}
+                    <FaStar className="fill-yellow-400 inline mr-2" /> by{" "}
+                    {rating.count} users
+                  </div>
                 </div>
-              </div>
+              </Link>
             ))
           )}
         </div>
