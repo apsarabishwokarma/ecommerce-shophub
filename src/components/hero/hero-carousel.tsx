@@ -10,8 +10,6 @@ export default function HeroCarousel() {
 
   return (
     <div className={`flex overflow-hidden relative`}>
-      {" "}
-      //not
       {heroCarouselItems.map((item, index) => (
         <div
           key={index}
