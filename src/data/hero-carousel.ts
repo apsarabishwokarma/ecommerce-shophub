@@ -18,7 +18,6 @@ export const heroCarouselItems = [
     title: "Summer 2025",
     category: "NEW COLLECTION",
     subtitle: " Elevating your shopping game, one click at a time.",
-    link: "/",
     image: "/assets/herobg.jpeg",
   },
 ];
