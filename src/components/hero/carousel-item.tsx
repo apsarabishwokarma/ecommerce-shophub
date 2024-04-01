@@ -37,7 +37,7 @@ export default function CarouselItem({
           <Button />
         </div>
 
-        {onPrevious && ( //not
+        {onPrevious && (
           <button onClick={onPrevious}>
             <GrPrevious
               className="absolute top-40% left-6"

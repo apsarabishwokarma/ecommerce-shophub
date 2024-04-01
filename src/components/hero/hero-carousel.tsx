@@ -41,7 +41,6 @@ export default function HeroCarousel() {
       </button>
       <button
         onClick={() => {
-          //logic 2 thauma why ?
           if (currentIndex === heroCarouselItems.length - 1) {
             setCurrentIndex(0);
           } else {
