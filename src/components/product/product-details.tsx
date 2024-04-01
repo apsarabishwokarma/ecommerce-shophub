@@ -3,6 +3,7 @@
 import Image from "next/image";
 import { useEffect, useState } from "react";
 import { FaStar } from "react-icons/fa";
+import Button from "../ui/button";
 
 type Product = {
   id: number;
@@ -48,29 +49,36 @@ export default function ProductDetails({ productId }: ProductDetailsProps) {
   }
 
   return (
-    <>
-      <div className="flex md:gap-40 gap-4  flex-wrap py-8 px-8 justify-center ">
-        <figure className="aspect-square">
+    <div className="container mx-auto px-6 ">
+      <div className="flex md:gap-20 gap-4 md:flex-row flex-col py-8 justify-center">
+        <figure className="aspect-square md:max-w-xl w-full">
           <Image
             src={product.image}
             alt={product.title}
-            height={300}
-            width={300}
-            className="object-cover"
+            height={900}
+            width={900}
+            className="object-cover w-full border rounded-sm"
             quality={100}
           />
         </figure>
-        <div className="flex flex-col md:gap-4">
+        <div className="flex flex-col md:gap-4 w-full">
           <h2 className="text-gray-600 font-bold text-2xl">{product.title}</h2>
+          <p className="text-gray-600 font-bold text-xl">
+            Price: ${product.price}
+          </p>
+          <p className="font-semibold">
+            <span>Availability: </span>
+            <span className="text-green-500 ">In Stock</span>{" "}
+          </p>
           <p>{product.description}</p>
-          <p className="text-gray-600 font-semibold">Price: ${product.price}</p>
           <div className="text-gray-600">
             {product.rating.rate}{" "}
             <FaStar className="fill-yellow-400 inline mr-2" /> by{" "}
             {product.rating.count} users
           </div>
+          <Button variant="outlined">Add to cart</Button>
         </div>
       </div>
-    </>
+    </div>
   );
 }

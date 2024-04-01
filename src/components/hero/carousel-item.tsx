@@ -30,7 +30,7 @@ export default function CarouselItem({
         }}
         className="bg-cover bg-no-repeat h-screen max-h-[800px] bg-center relative w-full"
       >
-        <div className="flex flex-col text-white container mx-auto px-8 md:px-20 pt-[200px] gap-8">
+        <div className="flex flex-col text-white container mx-auto px-8 md:px-20 pt-[200px] gap-4">
           <p className="font-medium text-base">{title}</p>
           <h1 className="font-bold text-3xl md:text-5xl">{category}</h1>
           <p className="font-medium text-base">{subtitle}</p>
