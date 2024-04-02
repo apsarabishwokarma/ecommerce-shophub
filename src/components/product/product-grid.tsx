@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { FaStar } from "react-icons/fa6";
@@ -71,9 +72,11 @@ const ProductGrid = () => {
               >
                 <div className="cursor-pointer">
                   <figure className="aspect-square">
-                    <img
+                    <Image
                       src={image}
                       alt={title}
+                      width={500}
+                      height={500}
                       className="w-full h-full object-contain"
                     />
                   </figure>

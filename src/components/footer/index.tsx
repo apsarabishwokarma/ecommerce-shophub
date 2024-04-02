@@ -7,9 +7,11 @@ export default function Footer() {
     <footer>
       <div className="bg-slate-100 mb-10">
         <div className="container mx-auto px-6 flex text-black justify-between items-center gap-2 py-10">
-          <h2 className="font-bold flex mr-2">
-            ShopHub <AiOutlineShopping size={20} />
-          </h2>
+          <Link href="/">
+            <h2 className="font-bold flex mr-2">
+              ShopHub <AiOutlineShopping size={20} />
+            </h2>
+          </Link>
           <div className="flex items-center justify-center">
             <p className="mr-2 font-bold">Follow Us :</p>
             <FaFacebook className="mr-2" />
