@@ -44,7 +44,7 @@ export default function Collections() {
               <div>
                 <Link
                   className="font-semibold text-gray-900 block px-2 py-2"
-                  href={`/collections/${c.replaceAll(" ", "-")}`}
+                  href={`/category/${c.replaceAll(" ", "-")}`}
                 >
                   {c}
                 </Link>

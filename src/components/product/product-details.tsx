@@ -113,7 +113,7 @@ export default function ProductDetails({ productId }: ProductDetailsProps) {
                     src={
                       "https://letsenhance.io/static/8f5e523ee6b2479e26ecc91b9c25261e/1015f/MainAfter.jpg"
                     }
-                    alt="manxe"
+                    alt="avatar"
                     width={200}
                     height={200}
                     className="object-cover w-[50px] aspect-square rounded-full"
@@ -147,7 +147,7 @@ export default function ProductDetails({ productId }: ProductDetailsProps) {
                     src={
                       "https://letsenhance.io/static/8f5e523ee6b2479e26ecc91b9c25261e/1015f/MainAfter.jpg"
                     }
-                    alt="manxe"
+                    alt="avatar"
                     width={200}
                     height={200}
                     className="object-cover w-[50px] aspect-square rounded-full"
