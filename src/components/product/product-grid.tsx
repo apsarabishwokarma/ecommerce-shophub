@@ -18,7 +18,19 @@ type Product = {
   };
 };
 
-const ProductGrid = () => {
+const ProductGrid = ({
+  category,
+  title,
+  subtitle,
+  heading,
+  limit,
+}: {
+  category?: string;
+  title?: string;
+  subtitle?: string;
+  heading?: string;
+  limit?: number;
+}) => {
   const [data, setData] = useState<Product[]>([]);
   const [isLoading, setIsLoading] = useState(true);
 
@@ -36,7 +48,14 @@ const ProductGrid = () => {
 
     async function getData() {
       try {
-        const res = await fetch("https://fakestoreapi.com/products");
+        const res = await fetch(
+          category
+            ? `https://fakestoreapi.com/products/category/${category.replaceAll(
+                "-",
+                " "
+              )}?limit=${limit}`
+            : `https://fakestoreapi.com/products?limit=${limit}`
+        );
         const json = await res.json();
         setData(json);
       } catch (e) {
@@ -47,18 +66,17 @@ const ProductGrid = () => {
     }
 
     getData();
-  }, []);
+  }, [category, limit]);
 
   return (
     <>
       <div className="bg-white text-black container mx-auto px-6">
         <div className=" flex flex-col  gap-4 py-20 justify-center items-center text-center">
-          <p className="font-medium text-base">Featured Products</p>
-          <h1 className="font-bold text-3xl">BEST SELLER PRODUCTS</h1>
-          <p className="font-medium text-lg">
-            Discover, click, and shop, Just a click away from your next
-            purchase.
-          </p>
+          {heading && (
+            <p className="font-medium text-base uppercase">{heading}</p>
+          )}
+          {title && <h1 className="font-bold text-3xl capitalize">{title}</h1>}
+          {subtitle && <p className="font-medium text-lg">{subtitle}</p>}
         </div>
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
           {isLoading ? (

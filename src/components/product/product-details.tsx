@@ -162,7 +162,7 @@ export default function ProductDetails({ productId }: ProductDetailsProps) {
           </div>
         </div>
       </div>
-      <ProductGrid />
+      <ProductGrid title="Recommended Products" limit={4} />
     </div>
   );
 }

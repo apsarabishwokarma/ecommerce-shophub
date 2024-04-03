@@ -1,4 +1,4 @@
-import ProductCategory from "@/components/product/product-category";
+import ProductGrid from "@/components/product/product-grid";
 import { redirect } from "next/navigation";
 
 export default function ProductCategoryPage({
@@ -10,5 +10,10 @@ export default function ProductCategoryPage({
     redirect("/");
   }
 
-  return <ProductCategory productCategory={params.category} />;
+  return (
+    <ProductGrid
+      category={params.category}
+      title={`Products > ${params.category}`}
+    />
+  );
 }
