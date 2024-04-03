@@ -3,6 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
+import { BiSortDown, BiSortUp } from "react-icons/bi";
 import { FaStar } from "react-icons/fa6";
 
 type Product = {
@@ -33,6 +34,7 @@ const ProductGrid = ({
 }) => {
   const [data, setData] = useState<Product[]>([]);
   const [isLoading, setIsLoading] = useState(true);
+  const [sort, setSort] = useState<"asc" | "desc">("asc");
 
   useEffect(() => {
     // function getData() {
@@ -53,8 +55,8 @@ const ProductGrid = ({
             ? `https://fakestoreapi.com/products/category/${category.replaceAll(
                 "-",
                 " "
-              )}?limit=${limit}`
-            : `https://fakestoreapi.com/products?limit=${limit}`
+              )}?limit=${limit}&sort=${sort}`
+            : `https://fakestoreapi.com/products?limit=${limit}&sort=${sort}`
         );
         const json = await res.json();
         setData(json);
@@ -66,7 +68,7 @@ const ProductGrid = ({
     }
 
     getData();
-  }, [category, limit]);
+  }, [category, limit, sort]);
 
   return (
     <>
@@ -77,6 +79,17 @@ const ProductGrid = ({
           )}
           {title && <h1 className="font-bold text-3xl capitalize">{title}</h1>}
           {subtitle && <p className="font-medium text-lg">{subtitle}</p>}
+        </div>
+        <div
+          className="flex items-center group mb-4 cursor-pointer max-w-max"
+          onClick={() => setSort((prev) => (prev === "asc" ? "desc" : "asc"))}
+        >
+          <div className="mr-1 text-sm font-medium text-black">Sort By :</div>
+          {sort === "asc" ? (
+            <BiSortUp className="w-4 h-4" />
+          ) : (
+            <BiSortDown className="w-4 h-4" />
+          )}
         </div>
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
           {isLoading ? (
