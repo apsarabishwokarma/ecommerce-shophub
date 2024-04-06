@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { AiOutlineShopping } from "react-icons/ai";
 import { FaFacebook, FaInstagram, FaTwitter } from "react-icons/fa";
+import Button from "../ui/button";
 
 export default function Footer() {
   return (
@@ -41,7 +42,7 @@ export default function Footer() {
               className="w-full bg-slate-200 p-4 focus:outline-none"
               placeholder="Your Email"
             ></input>
-            <button className="bg-blue-400 p-4">Subscribe</button>
+            <Button className="p-4 rounded-none">Subscribe</Button>
           </div>
         </div>
       </div>

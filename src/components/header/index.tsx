@@ -16,7 +16,9 @@ export default function Header() {
           </Link>
           <div className="flex  gap-4 items-center">
             <CiSearch size={24} />
-            <CiShoppingCart size={24} />
+            <Link href="/cart">
+              <CiShoppingCart size={24} />
+            </Link>
             <CiMenuBurger size={24} />
           </div>
         </div>
@@ -31,11 +33,18 @@ export default function Header() {
           <Collections />
           <SearchBar />
         </div>
+
         <div className="flex items-center gap-4">
-          <CiShoppingCart size={20} />
+          <Link href="/cart">
+            <CiShoppingCart size={20} />
+          </Link>
           <div className="h-4 w-[1px] bg-black"></div>
-          <p>Login</p>
-          <p>Signup</p>
+          <Link href="/login">
+            <p>Login</p>
+          </Link>
+          <Link href="/signup">
+            <p>Signup</p>
+          </Link>
         </div>
       </div>
     </header>
