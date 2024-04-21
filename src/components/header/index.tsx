@@ -1,10 +1,17 @@
+"use client";
+
 import Link from "next/link";
+import { useState } from "react";
 import { AiOutlineShopping } from "react-icons/ai";
 import { CiMenuBurger, CiSearch, CiShoppingCart } from "react-icons/ci";
 import Collections from "./collections";
 import SearchBar from "./search-bar";
 
 export default function Header() {
+  const [isDrawerOpen, setIsDrawerOpen] = useState(false);
+  const toggleDrawer = () => {
+    setIsDrawerOpen(!isDrawerOpen);
+  };
   return (
     <header className="bg-white">
       <div className=" container mx-auto px-6 sm:hidden flex justify-between items-center py-6">
@@ -19,7 +26,7 @@ export default function Header() {
             <Link href="/cart">
               <CiShoppingCart size={24} />
             </Link>
-            <CiMenuBurger size={24} />
+            <CiMenuBurger size={24} onClick={toggleDrawer} />
           </div>
         </div>
       </div>
@@ -47,6 +54,25 @@ export default function Header() {
           </Link>
         </div>
       </div>
+      {isDrawerOpen && (
+        <div className="fixed inset-0 bg-black bg-opacity-30 z-50">
+          <div className="bg-white w-2/4 h-2/4 fixed right-0 top-0 shadow-lg">
+            {/* Drawer Items */}
+            <div className="flex flex-col gap-4 p-4">
+              <Link href="/categories">
+                <p>Categories</p>
+              </Link>
+
+              <Link href="/login">
+                <p>Login</p>
+              </Link>
+              <Link href="/signup">
+                <p>Signup</p>
+              </Link>
+            </div>
+          </div>
+        </div>
+      )}
     </header>
   );
 }
