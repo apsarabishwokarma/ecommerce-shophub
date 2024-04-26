@@ -57,7 +57,6 @@ export default function Header() {
       {isDrawerOpen && (
         <div className="fixed inset-0 bg-black bg-opacity-30 z-50">
           <div className="bg-white w-2/4 h-2/4 fixed right-0 top-0 shadow-lg">
-            {/* Drawer Items */}
             <div className="flex flex-col gap-4 p-4">
               <Link href="/categories">
                 <p>Categories</p>
