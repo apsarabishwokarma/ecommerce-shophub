@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { useState } from "react";
-import { AiOutlineShopping } from "react-icons/ai";
+import { AiOutlineClose, AiOutlineShopping } from "react-icons/ai";
 import { CiMenuBurger, CiSearch, CiShoppingCart } from "react-icons/ci";
 import Collections from "./collections";
 import SearchBar from "./search-bar";
@@ -56,12 +56,15 @@ export default function Header() {
       </div>
       {isDrawerOpen && (
         <div className="fixed inset-0 bg-black bg-opacity-30 z-50">
-          <div className="bg-white w-2/4 h-2/4 fixed right-0 top-0 shadow-lg">
+          <div className="bg-white w-2/4 h-full fixed right-0 top-0 shadow-lg">
             <div className="flex flex-col gap-4 p-4">
+              <div onClick={toggleDrawer} className="cursor-pointer">
+                <AiOutlineClose size={24} />
+              </div>
+
               <Link href="/categories">
                 <p>Categories</p>
               </Link>
-
               <Link href="/login">
                 <p>Login</p>
               </Link>
