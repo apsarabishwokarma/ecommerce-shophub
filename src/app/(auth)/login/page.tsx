@@ -5,7 +5,7 @@ import { useRouter } from "next/navigation";
 import { FormEvent, useState } from "react";
 
 export default function Login() {
-  const [phoneNumber, setPhoneNumber] = useState("");
+  const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const router = useRouter();
 
@@ -30,7 +30,7 @@ export default function Login() {
         </div>
         <div className="flex justify-center items-center bg-indigo-100 bg-opacity-80 w-1/2 h-full">
           <div className="bg-white p-8 rounded-lg shadow-md w-3/4 max-w-md">
-            <h1 className="font-semibold text-3xl text-center mb-6">Login</h1>
+            <h1 className="font-semibold text-lg text-center mb-6">Login</h1>
             <p className="text-center mb-6 text-gray-600">
               Welcome back! Please login to your account.
             </p>
@@ -50,8 +50,8 @@ export default function Login() {
               <input
                 type="text"
                 placeholder="Enter your email "
-                value={phoneNumber}
-                onChange={(e) => setPhoneNumber(e.target.value)}
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
                 className="border border-gray-300 rounded px-4 py-2 w-full focus:outline-none focus:ring-2 focus:ring-green-500"
               />
 
