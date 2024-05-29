@@ -69,7 +69,7 @@ export default function Login() {
               <Button
                 variant="outlined"
                 type="submit"
-                className="py-2 rounded-lg w-full hover:bg-green-500 text-center flex items-center justify-center"
+                className="py-2 rounded-lg w-full  hover:bg-green-500 text-center flex items-center justify-center "
               >
                 Login
               </Button>
