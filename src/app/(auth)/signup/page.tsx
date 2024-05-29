@@ -23,6 +23,7 @@
 "use client";
 import Button from "@/components/ui/button";
 import Image from "next/image";
+import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { FormEvent, useState } from "react";
 
@@ -107,9 +108,6 @@ export default function Signup() {
                 onChange={(e) => setPassword(e.target.value)}
                 className="border border-gray-300 rounded px-4 py-2 focus:outline-none focus:ring-2 focus:ring-green-500"
               />
-              <div className="flex justify-end">
-                <p className="text-xs hover:underline">Forget password</p>
-              </div>
               <Button
                 variant="outlined"
                 type="submit"
@@ -117,6 +115,14 @@ export default function Signup() {
               >
                 Signup
               </Button>
+              <Link href="/login">
+                <div className="flex items-center justify-center cursor-pointer">
+                  <p className="w-full h-full flex items-center text-xs  ">
+                    Already have an account?{" "}
+                    <span className="text-green-500 ml-1">Login</span>
+                  </p>
+                </div>
+              </Link>
             </form>
           </div>
         </div>
