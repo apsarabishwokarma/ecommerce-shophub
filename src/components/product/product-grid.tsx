@@ -5,6 +5,7 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 import { BiSortDown, BiSortUp } from "react-icons/bi";
 import { FaStar } from "react-icons/fa6";
+import { useSearch } from "../header/search-context";
 
 type Product = {
   id: number;
@@ -35,7 +36,7 @@ const ProductGrid = ({
   const [data, setData] = useState<Product[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [sort, setSort] = useState<"asc" | "desc">("asc");
-
+  const { searchQuery } = useSearch();
   useEffect(() => {
     // function getData() {
     //   fetch("https://fakestoreapi.com/products")
@@ -69,7 +70,9 @@ const ProductGrid = ({
 
     getData();
   }, [category, limit, sort]);
-
+  const filteredProducts = data.filter((product) =>
+    product.title.toLowerCase().includes(searchQuery.toLowerCase())
+  );
   return (
     <>
       <div className="bg-white text-black container mx-auto px-6">
@@ -94,8 +97,10 @@ const ProductGrid = ({
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
           {isLoading ? (
             <div>Loading....</div>
+          ) : filteredProducts.length === 0 ? (
+            <div>No products found.</div>
           ) : (
-            data.map(({ id, title, image, price, rating }) => (
+            filteredProducts.map(({ id, title, image, price, rating }) => (
               <Link
                 href={`/product/${id}`}
                 key={id}
