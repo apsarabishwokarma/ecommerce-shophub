@@ -30,79 +30,81 @@ export default function Header() {
   const { totalQuantity } = useCart();
 
   return (
-    <header className="bg-white">
-      <div className="container mx-auto px-6 sm:hidden flex justify-between items-center py-6">
-        <div className="flex items-center gap-4 w-full justify-between">
-          <Link href="/">
-            <h2 className=" flex font-bold mr-2 ">
-              ShopHub <AiOutlineShopping size={20} />
-            </h2>
-          </Link>
-          <div className="flex  gap-4 items-center">
-            <CiSearch size={24} />
-            <CartToggle />
-            {totalQuantity > 0 && (
-              <span className="absolute -top-2 -right-2 bg-red-500 text-white text-xs font-bold rounded-full px-2 py-1">
-                {totalQuantity}
-              </span>
-            )}
-
-            <CiMenuBurger size={24} onClick={toggleDrawer} />
-          </div>
-        </div>
-      </div>
-      <div className="container mx-auto px-6 sm:flex hidden text-black justify-between items-center gap-2 py-4">
-        <div className="flex items-center gap-4 w-full">
-          <Link href="/">
-            <h2 className=" flex font-bold mr-2 ">
-              ShopHub <AiOutlineShopping size={20} />
-            </h2>
-          </Link>
-          <Collections />
-          <SearchBar />
-        </div>
-
-        <div className="flex items-center gap-4">
-          <div className="relative">
-            <CartToggle />
-            {totalQuantity > 0 && (
-              <span className="absolute -top-2 -right-2 bg-red-500 text-white text-xs font-bold rounded-full flex justify-center items-center w-4 h-4">
-                {totalQuantity}
-              </span>
-            )}
-          </div>
-          <div className="h-4 w-[1px] bg-black"></div>
-          <Link href="/login">
-            <p>Login</p>
-          </Link>
-          <Link href="/signup">
-            <p>Signup</p>
-          </Link>
-        </div>
-      </div>
-      <div
-        className={`fixed bg-black w-2/4 bg-opacity-30 z-50 top-0 bottom-0 transition-all duration-500 ease-in-out ${
-          isDrawerOpen ? "right-0" : "-right-[50%]"
-        }`}
-      >
-        <div className="bg-white h-full  right-0 top-0 shadow-lg ">
-          <div className="flex flex-col gap-4 p-4">
-            <div onClick={toggleDrawer} className="cursor-pointer">
-              <AiOutlineClose size={24} />
-            </div>
-
-            <Link href="/categories">
-              <p>Categories</p>
+    <>
+      <header className="bg-white">
+        <div className="container mx-auto px-6 sm:hidden flex justify-between items-center py-6">
+          <div className="flex items-center gap-4 w-full justify-between">
+            <Link href="/">
+              <h2 className=" flex font-bold mr-2 ">
+                ShopHub <AiOutlineShopping size={20} />
+              </h2>
             </Link>
-            <Link href="/login" onClick={() => setIsDrawerOpen(false)}>
+            <div className="flex  gap-4 items-center">
+              <CiSearch size={24} />
+              <CartToggle />
+              {totalQuantity > 0 && (
+                <span className="absolute -top-2 -right-2 bg-red-500 text-white text-xs font-bold rounded-full px-2 py-1">
+                  {totalQuantity}
+                </span>
+              )}
+
+              <CiMenuBurger size={24} onClick={toggleDrawer} />
+            </div>
+          </div>
+        </div>
+        <div className="container mx-auto px-6 sm:flex hidden text-black justify-between items-center gap-2 py-4">
+          <div className="flex items-center gap-4 w-full">
+            <Link href="/">
+              <h2 className=" flex font-bold mr-2 ">
+                ShopHub <AiOutlineShopping size={20} />
+              </h2>
+            </Link>
+            <Collections />
+            <SearchBar />
+          </div>
+
+          <div className="flex items-center gap-4">
+            <div className="relative">
+              <CartToggle />
+              {totalQuantity > 0 && (
+                <span className="absolute -top-2 -right-2 bg-red-500 text-white text-xs font-bold rounded-full flex justify-center items-center w-4 h-4">
+                  {totalQuantity}
+                </span>
+              )}
+            </div>
+            <div className="h-4 w-[1px] bg-black"></div>
+            <Link href="/login">
               <p>Login</p>
             </Link>
-            <Link href="/signup" onClick={() => setIsDrawerOpen(false)}>
+            <Link href="/signup">
               <p>Signup</p>
             </Link>
           </div>
         </div>
-      </div>
-    </header>
+        <div
+          className={`fixed bg-black w-2/4 bg-opacity-30 z-50 top-0 bottom-0 transition-all duration-500 ease-in-out ${
+            isDrawerOpen ? "right-0" : "-right-[50%]"
+          }`}
+        >
+          <div className="bg-white h-full  right-0 top-0 shadow-lg ">
+            <div className="flex flex-col gap-4 p-4">
+              <div onClick={toggleDrawer} className="cursor-pointer">
+                <AiOutlineClose size={24} />
+              </div>
+
+              <Link href="/categories">
+                <p>Categories</p>
+              </Link>
+              <Link href="/login" onClick={() => setIsDrawerOpen(false)}>
+                <p>Login</p>
+              </Link>
+              <Link href="/signup" onClick={() => setIsDrawerOpen(false)}>
+                <p>Signup</p>
+              </Link>
+            </div>
+          </div>
+        </div>
+      </header>
+    </>
   );
 }

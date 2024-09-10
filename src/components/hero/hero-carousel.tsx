@@ -3,10 +3,14 @@
 import { heroCarouselItems } from "@/data/hero-carousel";
 import { useState } from "react";
 import { GrNext, GrPrevious } from "react-icons/gr";
+import { useSearch } from "../header/search-context";
 import CarouselItem from "./carousel-item";
 
 export default function HeroCarousel() {
   const [currentIndex, setCurrentIndex] = useState(0);
+  const { searchQuery } = useSearch();
+
+  if (searchQuery) return <></>;
 
   return (
     <div className={`flex overflow-hidden relative`}>

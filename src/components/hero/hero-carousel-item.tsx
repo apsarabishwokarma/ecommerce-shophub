@@ -4,7 +4,7 @@ import { heroCarouselItems } from "@/data/hero-carousel";
 import { useState } from "react";
 import CarouselItem from "./carousel-item";
 
-export default function Hero() {
+export default function HeroCarouselItem() {
   const [currentIndex, setCurrentIndex] = useState(0);
 
   return (
