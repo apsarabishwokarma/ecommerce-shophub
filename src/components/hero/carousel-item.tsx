@@ -7,11 +7,6 @@ import Button from "../ui/button";
 type CarouselItemProps = {
   onPrevious?: () => void;
   onNext?: () => void;
-  // title: string;
-  // category: string;
-  // subtitle: string;
-  // image: string;
-  // link?: string;
 } & HeroCarouselItem;
 
 export default function CarouselItem({

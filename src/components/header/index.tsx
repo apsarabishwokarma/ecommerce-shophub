@@ -25,8 +25,6 @@ export default function Header() {
     }
   }, [isDrawerOpen]);
 
-  // const classList = ["container", "mx-auto"];
-
   const { totalQuantity } = useCart();
 
   return (
